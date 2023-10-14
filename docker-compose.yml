@@ -24,6 +24,7 @@ services:
     container_name: celery
     build:
       context: ./cedjango
+    command: celery --app=cedjango worker -l INFO
     volumes:
       - ./cedjango:/usr/src/app/
     environment:
