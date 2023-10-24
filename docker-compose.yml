@@ -11,6 +11,7 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./cedjango:/usr/src/app/
+
     ports:
       - 8001:8000
     environment:
@@ -31,5 +32,14 @@ services:
       - DEBUG=1
       - SECRET_KEY=n+onfxp2w&0+7wm^yrcw=$au+hjp)!603dqduo1-=9u3na$u#s
       - ALLOWED_HOSTS=localhost,127.0.0.1
+    depends_on:
+      - redis
+
+  standalone_celery_worker:
+    build:
+      context: ./standalonecworker
+    command: celery --app=celeryapp worker -l INFO
+    volumes:
+      - ./standalonecworker:/usr/src/app/
     depends_on:
       - redis

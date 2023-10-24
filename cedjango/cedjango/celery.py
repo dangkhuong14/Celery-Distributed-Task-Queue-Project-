@@ -1,7 +1,8 @@
 import os
 from celery import Celery
 
-# Lệnh trong file manage.py vì celery container không có command to run app
+# Lệnh trong file manage.py vì celery container không có command to run app ma dung khai bao
+# ben duoi de Celery worker Django project nhan biet file settings cua Django o vi tri nao
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cedjango.settings')
 
 app = Celery('cedjango')
